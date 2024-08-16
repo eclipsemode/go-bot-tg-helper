@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	RndCmd   = "/cmd"
+	RndCmd   = "/rnd"
 	HelpCmd  = "/help"
 	StartCmd = "/start"
 )
