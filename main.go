@@ -9,6 +9,7 @@ import (
 	"github.com/eclipsemode/go-bot-tg-helper/storage/sqlite"
 	"github.com/joho/godotenv"
 	"log"
+	"os"
 )
 
 const (
@@ -17,8 +18,6 @@ const (
 	storageSqlLitePath = storagePath + "/sqlite/data"
 	batchSize          = 100
 )
-
-// 7446099344:AAEDhIsH9nV3yhoVdF0mVYCxSp6CicyAyvE
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -52,7 +51,8 @@ func mustToken() string {
 	flag.Parse()
 
 	if *token == "" {
-		log.Fatal("telegram bot token is required")
+		tgToken := os.Getenv("TG_TOKEN")
+		token = &tgToken
 	}
 
 	return *token
