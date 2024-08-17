@@ -2,10 +2,10 @@ package telegram
 
 import (
 	"errors"
-	"telegram-helper/clients/telegram"
-	"telegram-helper/events"
-	"telegram-helper/lib/errs"
-	"telegram-helper/storage"
+	"github.com/eclipsemode/go-bot-tg-helper/clients/telegram"
+	"github.com/eclipsemode/go-bot-tg-helper/events"
+	"github.com/eclipsemode/go-bot-tg-helper/lib/errs"
+	"github.com/eclipsemode/go-bot-tg-helper/storage"
 )
 
 type Processor struct {

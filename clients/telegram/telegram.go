@@ -2,12 +2,12 @@ package telegram
 
 import (
 	"encoding/json"
+	"github.com/eclipsemode/go-bot-tg-helper/lib/errs"
 	"io"
 	"net/http"
 	"net/url"
 	"path"
 	"strconv"
-	"telegram-helper/lib/errs"
 )
 
 const (

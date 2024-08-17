@@ -1,8 +1,8 @@
 package event_consumer
 
 import (
+	"github.com/eclipsemode/go-bot-tg-helper/events"
 	"log"
-	"telegram-helper/events"
 	"time"
 )
 

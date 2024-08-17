@@ -4,11 +4,11 @@ import (
 	"encoding/gob"
 	"errors"
 	"fmt"
+	"github.com/eclipsemode/go-bot-tg-helper/lib/errs"
+	"github.com/eclipsemode/go-bot-tg-helper/storage"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"telegram-helper/lib/errs"
-	"telegram-helper/storage"
 	"time"
 )
 
