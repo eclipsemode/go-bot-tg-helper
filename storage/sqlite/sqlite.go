@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/eclipsemode/go-bot-tg-helper/storage"
 	_ "github.com/mattn/go-sqlite3"
+	"log"
 )
 
 type Storage struct {
@@ -42,24 +43,26 @@ func (s *Storage) Save(ctx context.Context, p *storage.Page) error {
 
 // PickRandom pick random page from storage.
 func (s *Storage) PickRandom(ctx context.Context, userName string) (*storage.Page, error) {
-	q := `SELECT url FROM pages WHERE user_name = ? ORDER BY RANDOM() LIMIT 1`
+	q := `SELECT * FROM pages WHERE user_name = ? ORDER BY RANDOM() LIMIT 1`
 
-	var url string
+	var page storage.Page
 
-	err := s.db.QueryRowContext(ctx, q, userName).Scan(&url)
+	err := s.db.QueryRowContext(ctx, q, userName).Scan(&page.URL, &page.UserName)
 	if errors.Is(err, sql.ErrNoRows) {
-		return nil, nil
+		return nil, storage.ErrNoSavedPages
 	}
 	if err != nil {
 		return nil, fmt.Errorf("cannot execute query: %w", err)
 	}
 
-	return &storage.Page{URL: url}, nil
+	return &page, nil
 }
 
 // Remove removes page from storage.
 func (s *Storage) Remove(ctx context.Context, page *storage.Page) error {
 	q := `DELETE FROM pages WHERE url = ? AND user_name = ?`
+
+	log.Println(page.URL, page.UserName)
 
 	_, err := s.db.ExecContext(ctx, q, page.URL, page.UserName)
 	if err != nil {
